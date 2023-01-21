@@ -1,0 +1,180 @@
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  margin: 1rem;
+  padding-bottom: 2rem;
+  background-attachment: fixed;
+}
+h1{
+  font-weight: 100;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+[class^="actions_btn"],
+[class^="actions_btn"]:visited {
+
+  /* button colors light */
+  --btn-fg: #503660;
+  --btn-bg: #fafafd;
+  --btn-fg-hover: #418cec;
+  --btn-bg-hover: #fff;
+
+  box-sizing: content-box;
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0.25rem;
+  color: var(--btn-fg);
+  background-color: var(--btn-bg);
+  border: 0.125rem solid transparent;
+  border-radius: 50%;
+  box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  outline: 0 solid;
+  transition: all 0.3s ease-out;
+}
+[class^="actions_btn"]:hover,
+[class^="actions_btn"]:focus {
+  color: var(--btn-fg-hover);
+  background-color: var(--btn-bg-hover);
+  border-color: var(--btn-fg-hover);
+  transform: scale(1.2);
+  box-shadow: 0 0.5em 0.5em rgba(0, 0, 0, 0.4);
+}
+[class^="actions_svg"] {
+  width: 2.25rem;
+  height: 2.25rem;
+  fill: currentColor;
+  stroke: currentColor;
+  border-radius: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  transition: transform 0.5s ease-out;
+}
+
+/* Button click animation */
+
+[class^="actions_btn"].-js-clicked {
+  animation: actions_btn-clicked 0.3s ease-out forwards;
+}
+@keyframes actions_btn-clicked {
+  0% {transform: scale(1.2);}
+  50% {transform: scale(0.8);}
+  100% {transform: scale(1.2);}
+}
+
+/* Remove all buttons from printouts */
+
+@media print {
+  [class^="actions_container"] {
+    display: none !important;
+  }
+}
+
+body {
+  --color: hsl(269, 19%, 30%);
+  --bgColor: hsla(32,100%,85%,.35);
+  --linkColor: hsla(214, 71%, 47%, 1);
+  --linkColorHover: hsla(214, 100%, 35%, 1);
+  --linkBgHover: hsla(214, 100%, 85%, 1);
+  --linkFocus: hsla(214, 71%, 80%, 0.3);
+  --focusOutline: var(--linkFocus) solid 0.25rem;
+  --imgFilter: none;
+  --bgPage: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.4'/%3E%3C/filter%3E%3C/defs%3E%3Crect filter='url(%23a)' opacity='.3' width='100%25' height='100%25'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  body:not([data-lightMode="light"]) {
+    --color: #fafafa;
+    --bgColor: hsl(269, 19%, 5%);
+    --linkColor: hsla(214, 100%, 80%, 1);
+    --linkColorHover: hsla(214, 100%, 11%, 1);
+    --linkFocus: hsla(214, 100%, 80%, .5);
+    --focusOutline: hsla(214, 100%, 85%, .6) solid .25rem;
+    --imgFilter: grayscale(15%) brightness(85%);
+    --bgPage: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7'/%3E%3C/filter%3E%3C/defs%3E%3Crect filter='url(%23a)' opacity='.3' width='100%25' height='100%25'/%3E%3C/svg%3E");
+  }
+}
+
+/* Duplicated dark mode for button action */
+body[data-lightMode="dark"] {
+  --color: #fff;
+  --bgColor: hsl(269, 19%, 5%);
+  --linkColor: hsla(214, 100%, 80%, 1);
+  --linkColorHover: hsla(214, 100%, 11%, 1);
+  --linkFocus: hsla(214, 100%, 80%, .6);
+  --focusOutline: hsla(214, 100%, 85%, .6) solid .25rem;
+  --imgFilter: grayscale(15%) brightness(85%);
+  --bgPage: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7'/%3E%3C/filter%3E%3C/defs%3E%3Crect filter='url(%23a)' opacity='.3' width='100%25' height='100%25'/%3E%3C/svg%3E");
+}
+
+body {
+  color: var(--color);
+  background-color: var(--bgColor);
+  background-image: var(--bgPage);
+  transition: 
+    background-image .3s ease-out,
+    background-color .3s ease-out,
+    color .3s ease-out;
+}
+
+img:not([src*=".svg"]) {
+  filter: var(--imgFilter);
+  transition: filter 0.3s ease-out;
+}
+
+a:link,
+a:visited {
+  color: var(--linkColor);
+  text-decoration-color: var(--linkColorUnderline);
+  outline: hsla(214, 71%, 80%, 0) solid .25rem;
+  transition:
+    color .3s ease-out,
+    background-color .3s ease-out,
+    outline-color .3s ease-out;
+}
+a:hover,
+a:focus {
+  color: var(--linkColorHover);
+  outline: var(--linkBgHover) solid .25rem;
+  background-color: var(--linkBgHover);
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+.actions_btn-mode {
+  --fromEdge: .5rem;
+  position: fixed;
+  z-index: 5;
+  top: var(--fromEdge);
+  right: var(--fromEdge);
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+}
+@media (min-width: 768px) {
+  .actions_btn-mode {
+    --fromEdge: 1.5rem;
+  }
+}
+
+/* Switch icon between dark &amp; light */
+.actions_svg-mode > * {
+  transition: opacity .3s ease-out;
+}
+[data-lightMode="light"] .mode-dark,
+[data-lightMode="dark"] .mode-light {
+  opacity: 1;
+}
+[data-lightMode="light"] .mode-light,
+[data-lightMode="dark"] .mode-dark {
+  opacity: 0;
+}
